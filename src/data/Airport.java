@@ -1,2 +1,6 @@
-package data;public class Airport {
+package data;
+
+public class Airport {
+
+
 }
