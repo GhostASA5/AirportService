@@ -76,14 +76,11 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "Flight{" +
-                "flightNumber='" + flightNumber + '\'' +
-                ", date=" + date +
-                ", departure=" + departureTime +
-                ", flightTime=" + flightTime +
-                ", codeIATADeparture='" + codeIATADeparture + '\'' +
-                ", codeIATAArrival='" + codeIATAArrival + '\'' +
-                ", price=" + price +
-                '}';
+        return flightNumber + " " +
+                date + " " +
+                departureTime + " " +
+                codeIATADeparture + " " +
+                codeIATAArrival + " " +
+                price;
     }
 }
