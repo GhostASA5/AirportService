@@ -1,16 +1,31 @@
 package data;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Flight {
+
+    public Flight() {
+    }
+
+    public Flight(String flightNumber, LocalDate date, LocalTime departureTime, String flightTime, String codeIATADeparture, String codeIATAArrival, Double price) {
+        this.flightNumber = flightNumber;
+        this.date = date;
+        this.departureTime = departureTime;
+        this.flightTime = flightTime;
+        this.codeIATADeparture = codeIATADeparture;
+        this.codeIATAArrival = codeIATAArrival;
+        this.price = price;
+    }
 
     private String flightNumber;
 
     private LocalDate date;
 
-    private LocalDate departureTime;
+    private LocalTime departureTime;
 
-    private Double flightTime;
+    private String flightTime;
 
     private String codeIATADeparture;
 
@@ -34,19 +49,19 @@ public class Flight {
         this.date = date;
     }
 
-    public LocalDate getDepartureTime() {
+    public LocalTime getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(LocalDate departureTime) {
+    public void setDepartureTime(LocalTime departureTime) {
         this.departureTime = departureTime;
     }
 
-    public Double getFlightTime() {
+    public String getFlightTime() {
         return flightTime;
     }
 
-    public void setFlightTime(Double flightTime) {
+    public void setFlightTime(String flightTime) {
         this.flightTime = flightTime;
     }
 
@@ -77,8 +92,9 @@ public class Flight {
     @Override
     public String toString() {
         return flightNumber + " " +
-                date + " " +
+                date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " " +
                 departureTime + " " +
+                flightTime + " " +
                 codeIATADeparture + " " +
                 codeIATAArrival + " " +
                 price;
