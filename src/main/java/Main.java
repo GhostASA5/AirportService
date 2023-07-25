@@ -11,60 +11,44 @@ public class Main {
 
     private static final List<String> airportCodes = new JSONParser().parseAirportCodeJson("resources/airports.json");
 
-    private static final ConsoleMessages consoleMessages = new ConsoleMessages();
-
     public static void main(String[] args) {
-
         int command = 10;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Сервис поиска авиабилетов\n");
-
+        System.out.println(ConsoleMessages.AIRPORT_SERVICE);
         while (command != 0){
-            System.out.println("""
-                    Глвное меню:\s
-                    1 - ввод рейса
-                    2 - вывод всех рейсов
-                    3 - поиск рейса по номеру
-                    0 - завершение работы
-                    """);
-            System.out.print("Введите номер пункта меню : ");
+            System.out.println(ConsoleMessages.MAIN_MENU);
+            System.out.print(ConsoleMessages.MENU_ITEM_NUMBER);
             command = scanner.nextInt();
-
             if(command == 1){
-                System.out.println("Введите данные рейса: ");
-                System.out.print("XXXX - номер рейса: ");
+                System.out.println(ConsoleMessages.FLIGHT_DATA);
+                System.out.print(ConsoleMessages.FLIGHT_NUMBER);
                 String flightNumber = scanner.next();
-                System.out.print("ДД/ММ/ГГГГ - дата рейса: ");
+                System.out.print(ConsoleMessages.DATE);
                 String date = scanner.next();
-                System.out.print("ЧЧ:ММ - время вылета: ");
+                System.out.print(ConsoleMessages.DEPARTURE_TIME);
                 String departureTime = scanner.next();
-                System.out.print("XX.XX - длительность перелета: ");
+                System.out.print(ConsoleMessages.FLIGHT_TIME);
                 String flightTime = scanner.next();
-                System.out.print("XXX - аэропорт вылета: ");
+                System.out.print(ConsoleMessages.CODE_IATA_DEPARTURE);
                 String codeIATADeparture = scanner.next();
-                System.out.print("XXX - аэропорт назначения: ");
+                System.out.print(ConsoleMessages.CODE_IATA_ARRIVAL);
                 String codeIATAArrival = scanner.next();
-                System.out.print(".XX - стоимость билета: ");
+                System.out.print(ConsoleMessages.PRICE);
                 String price = scanner.next();
-                if (isFlightCorrect(flightNumber, date, departureTime, flightTime, codeIATADeparture,
-                        codeIATAArrival, price)){
+                if (isFlightCorrect(flightNumber, date, departureTime, flightTime, codeIATADeparture, codeIATAArrival, price)){
                     airportService.addFlight(flightNumber.toUpperCase(), LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                             LocalTime.parse(departureTime, DateTimeFormatter.ofPattern("HH:mm")),
                             flightTime, codeIATADeparture, codeIATAArrival, Double.valueOf(price));
                     System.out.println(airportService.getFlight(flightNumber.toUpperCase()).replace("\n", "") + " добавлена\n");
-                    consoleMessages.addMessage(airportService.getFlight(flightNumber.toUpperCase()).replace("\n", "") + " добавлена\n");
                 } else{
-                    System.out.println("Не все данные проходят по формату");
-                    consoleMessages.addMessage("Не все данные проходят по формату");
+                    System.out.println(ConsoleMessages.ERROR_DATA_FLIGHT_FORMAT);
                 }
             } else if (command == 2) {
                 System.out.println(airportService.getAllFlight());
-                consoleMessages.addMessage(airportService.getAllFlight());
             } else if (command == 3) {
-                System.out.print("Введите номер рейса в формате XXXX: ");
+                System.out.print(ConsoleMessages.ENTER_FLIGHT_NUMBER);
                 String flightNumber = scanner.next();
                 System.out.println(airportService.getFlight(flightNumber.toUpperCase()));
-                consoleMessages.addMessage(airportService.getFlight(flightNumber.toUpperCase()));
             }
         }
     }
