@@ -16,25 +16,25 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println(ConsoleMessages.AIRPORT_SERVICE);
         while (command != 0){
-            System.out.println(ConsoleMessages.MAIN_MENU);
-            System.out.print(ConsoleMessages.MENU_ITEM_NUMBER);
+            System.out.print(ConsoleMessages.MAIN_MENU + ConsoleMessages.MENU_ITEM_NUMBER);
             command = scanner.nextInt();
+            scanner.nextLine();
             if(command == 1){
                 System.out.println(ConsoleMessages.FLIGHT_DATA);
                 System.out.print(ConsoleMessages.FLIGHT_NUMBER);
-                String flightNumber = scanner.next();
+                String flightNumber = scanner.nextLine();
                 System.out.print(ConsoleMessages.DATE);
-                String date = scanner.next();
+                String date = scanner.nextLine();
                 System.out.print(ConsoleMessages.DEPARTURE_TIME);
-                String departureTime = scanner.next();
+                String departureTime = scanner.nextLine();
                 System.out.print(ConsoleMessages.FLIGHT_TIME);
-                String flightTime = scanner.next();
+                String flightTime = scanner.nextLine();
                 System.out.print(ConsoleMessages.CODE_IATA_DEPARTURE);
-                String codeIATADeparture = scanner.next();
+                String codeIATADeparture = scanner.nextLine();
                 System.out.print(ConsoleMessages.CODE_IATA_ARRIVAL);
-                String codeIATAArrival = scanner.next();
+                String codeIATAArrival = scanner.nextLine();
                 System.out.print(ConsoleMessages.PRICE);
-                String price = scanner.next();
+                String price = scanner.nextLine();
                 if (isFlightCorrect(flightNumber, date, departureTime, flightTime, codeIATADeparture, codeIATAArrival, price)){
                     airportService.addFlight(flightNumber.toUpperCase(), LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                             LocalTime.parse(departureTime, DateTimeFormatter.ofPattern("HH:mm")),
@@ -47,7 +47,7 @@ public class Main {
                 System.out.println(airportService.getAllFlight());
             } else if (command == 3) {
                 System.out.print(ConsoleMessages.ENTER_FLIGHT_NUMBER);
-                String flightNumber = scanner.next();
+                String flightNumber = scanner.nextLine();
                 System.out.println(airportService.getFlight(flightNumber.toUpperCase()));
             }
         }

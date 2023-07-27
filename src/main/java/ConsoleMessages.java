@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public final class ConsoleMessages {
 
     public ConsoleMessages() {
@@ -13,7 +10,7 @@ public final class ConsoleMessages {
                     2 - вывод всех рейсов
                     3 - поиск рейса по номеру
                     0 - завершение работы
-                    """;
+                    \n""";
     public static final String MENU_ITEM_NUMBER = "Введите номер пункта меню : ";
     public static final String FLIGHT_DATA = "Введите данные рейса: ";
     public static final String FLIGHT_NUMBER = "XXXX - номер рейса: ";
